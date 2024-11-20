@@ -31,7 +31,10 @@ const reviews: {
 ];
 
 function showReviewTotal(value: number, reviewer: string) {
-    reviewTotalDisplay.innerHTML =
-      "review total" + value.toString() + "| last reviewed by " + reviewer;
+    const iconDisplay = isLoyalty ? "⭐" : "";
+    if (reviewTotalDisplay) {
+        reviewTotalDisplay.innerHTML =
+            "review total" + value.toString() + "| last reviewed by " + reviewer;
+    }
 }
-showReviewTotal(reviews.length, reviews[0].name);
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
