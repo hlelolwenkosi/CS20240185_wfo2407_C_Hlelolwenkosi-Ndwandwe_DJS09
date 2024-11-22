@@ -11,24 +11,25 @@ export function showReviewTotal(
   reviewer: string,
   isLoyalty: LoyaltyUser
 ): void {
-  const iconDisplay = LoyaltyUser.GOLD_USER ? "⭐" : "";
-  reviewTotalDisplay.innerHTML =
-    value.toString() +
-    " review" +
-    makeMultiple(value) +
-    "| last reviewed by " +
-    reviewer +
-    "" +
-    iconDisplay;
-}
-
-export function populateUser(isReturning: boolean, userName: string) {
-  if (isReturning == true) {
+  const iconDisplay = isLoyalty === LoyaltyUser.GOLD_USER ? "⭐" : "";
+  if (reviewTotalDisplay) {
+    reviewTotalDisplay.innerHTML =
+      value.toString() +
+      " review" +
+      makeMultiple(value) +
+      "| last reviewed by " +
+      reviewer +
+      "" +
+      iconDisplay;
+  }
+}export function populateUser(isReturning: boolean, userName: string) {
+  if (isReturning == true && returningUserDisplay) {
     returningUserDisplay.innerHTML = "back";
   }
-  userNameDisplay.innerHTML = userName;
+  if (userNameDisplay) {
+    userNameDisplay.innerHTML = userName;
+  }
 }
-
 export function showDetails(
   value: boolean | Permissions,
   element: HTMLDivElement,

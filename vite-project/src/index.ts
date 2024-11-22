@@ -1,14 +1,10 @@
-import "../index.css"
+import './index.css'; // For styling
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils';
+import { Permissions, LoyaltyUser } from './enums';
+import { Review, Property } from './interfaces';
+import MainProperty from './classes';
 
-import {
-  showReviewTotal,
-  populateUser,
-  showDetails,
-  getTopTwoReviews,
-} from "./utils";
-import { Permissions, LoyaltyUser } from "./enums";
-import { Review, Property } from "./interfaces";
-import { MainProperty } from "./classes";
+
 const propertyContainer = document.querySelector(".properties");
 const reviewContainer = document.querySelector(".reviews");
 const container = document.querySelector(".container");
@@ -51,7 +47,7 @@ const you = {
 // Array of  Properties
 const properties: Property[] = [
   {
-    image: "images/colombia-property.jpg",
+    image: "/src/images/colombia-property.jpg",
     title: "Colombian Shack",
     price: 45,
     location: {
@@ -64,7 +60,7 @@ const properties: Property[] = [
     isAvailable: true,
   },
   {
-    image: "images/poland-property.jpg",
+    image: "/src/images/poland-property.jpg",
     title: "Polish Cottage",
     price: 30,
     location: {
@@ -77,7 +73,7 @@ const properties: Property[] = [
     isAvailable: false,
   },
   {
-    image: "images/london-property.jpg",
+    image: "/src/images/london-property.jpg",
     title: "London Flat",
     price: 25,
     location: {
@@ -90,7 +86,7 @@ const properties: Property[] = [
     isAvailable: true,
   },
   {
-    image: "images/malaysian-hotel.jpeg",
+    image: "/src/images/malaysian-hotel.jpg",
     title: "Malia Hotel",
     price: 35,
     location: {
@@ -118,7 +114,7 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute("src", properties[i].image);
   card.appendChild(image);
   showDetails(you.permissions, card, properties[i].price);
-  propertyContainer.appendChild(card);
+  propertyContainer?.appendChild(card);
 }
 
 // Adds reviews to the page
@@ -131,26 +127,25 @@ function addReviews(array: Review[]): void {
       const card = document.createElement("div");
       card.classList.add("review-card");
       card.innerHTML = topTwo[i].stars + " stars from " + topTwo[i].name;
-      reviewContainer.appendChild(card);
+      reviewContainer?.appendChild(card);
     }
-    container.removeChild(button);
+    if (container && button) {
+      container.removeChild(button);
+    }
   }
 }
 
-button.addEventListener("click", () => addReviews(reviews));
-
+button?.addEventListener("click", () => addReviews(reviews));
 // Replaced with my location, current time and current temperature
-let currentLocation: [string, string, number] = ["Rustenburg", "13.27", 17];
-footer.innerHTML =
-  currentLocation[0] +
-  " " +
+let currentLocation: [string, string, number] = ["Stellenbosch", "13.27", 17];
+footer!.innerHTML =  currentLocation[0] +  " " +
   currentLocation[1] +
   " " +
   currentLocation[2] +
   "°C";
 
 let yourMainProperty = new MainProperty(
-  "images/italian-property.jpg",
+  "/src/images/italian-property.jpg",
   "Italian House",
   [
     {
@@ -165,4 +160,4 @@ let yourMainProperty = new MainProperty(
 const mainImageContainer = document.querySelector(".main-image");
 const image = document.createElement("img");
 image.setAttribute("src", yourMainProperty.src);
-mainImageContainer.appendChild(image);
+mainImageContainer?.appendChild(image);
