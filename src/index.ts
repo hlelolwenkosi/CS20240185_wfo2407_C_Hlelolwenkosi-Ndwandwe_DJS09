@@ -61,7 +61,7 @@ const properties: Property[] = [
   },
   {
     image: "/images/poland-property.jpg",
-    title: "Polish Cottage",
+    title: "Poli Cottage",
     price: 30,
     location: {
       firstLine: "no 23",
