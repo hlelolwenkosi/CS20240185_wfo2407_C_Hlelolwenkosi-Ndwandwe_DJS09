@@ -11,7 +11,7 @@ const container = document.querySelector(".container");
 const button = document.querySelector("button");
 const footer = document.querySelector(".footer");
 
-let isLoggedIn: boolean;
+//let isLoggedIn: boolean;
 
 // Reviews
 const reviews: Review[] = [
